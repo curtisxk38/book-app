@@ -1,0 +1,14 @@
+<%= form_tag(books_path, :method => "get", id: "search-form") do %>
+	<%= text_field_tag :search, params[:search], placeholder: "Search Books" %>
+	<%= select_tag "type", options_for_select(%w[Author Title], params[:type]) %>
+	<%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<% @books.each do |book| %>
+	<p><%= link_to book.title, book_path(book) %> by <%= book.author %></p>
+<% end %>
+
+<% if @books.empty? %>
+	<h3>Can't find a book?</h3>
+	<h3>Add it <%= link_to "here", new_book_path %></h3>
+<% end %>
