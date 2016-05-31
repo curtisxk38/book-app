@@ -11,4 +11,8 @@
 <% if @books.empty? %>
 	<h3>Can't find a book?</h3>
 	<h3>Add it <%= link_to "here", new_book_path %></h3>
+<% else %>
+	<div class="center">
+		<p>Create a new book page <%= link_to "here", new_book_path %></p>
+	</div>
 <% end %>

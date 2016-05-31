@@ -1,1 +1,25 @@
 <h2><%= @book.title %> by <%= @book.author %></h2>
+<% if user_signed_in? %>
+	<div class="row">
+		<aside class="col-md-4">
+			<section class="user_info">
+				<%= render 'layouts/user_info' %>
+			</section>
+			<section class="review_form">
+				<%= render 'layouts/review_form' %>
+			</section>
+		</aside>
+	</div>
+<% end %>
+<div class="col-md-8">
+	<% if @book.reviews.any? %>
+	<% puts "test" %>
+		<h3>Reviews (<%= @book.reviews.count %>)</h3>
+			<ol class="reviews">
+				<%= render @reviews %>
+			</ol>
+		<%= will_paginate @reviews %>
+	<% else %>
+	<% puts "no reviews" %>
+	<% end %>
+</div>

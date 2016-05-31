@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :books
+  resources :reviews, only: [:create, :destroy]
   root 'static_pages#home'
   get 'about' => 'static_pages#about'
   get 'signup' => 'users#new'

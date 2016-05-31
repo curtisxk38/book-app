@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 		@books = Book.all 
 		# Patching all Listing
 		if params[:search]
-			@books = Book.search(params[:search], params[:type])
+			@books = Book.search(params[:earch], params[:type])
 		else
 			@books = Book.all
 		end
@@ -11,6 +11,8 @@ class BooksController < ApplicationController
 
 	def show
 		@book = Book.find(params[:id])
+		@reviews = @book.reviews
+		@review = current_user.reviews.build if user_signed_in?
 	end
 
 
